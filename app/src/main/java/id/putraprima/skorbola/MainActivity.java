@@ -105,20 +105,31 @@ public class MainActivity extends AppCompatActivity {
         String homeUriString = homeUri.toString();
         String awayUriString = awayUri.toString();
 
-        boolean validate = !homeTeamName.isEmpty()
-                && !awayTeamName.isEmpty()
-                && !homeUriString.isEmpty()
-                && !awayUriString.isEmpty();
+        boolean validate = homeTeamName.isEmpty()&&awayTeamName.isEmpty()&&homeUriString.isEmpty()&&awayUriString.isEmpty();
 
-        if (validate){
+
+        if(homeTeamName.isEmpty()){
+            Toast.makeText(this, "Entry home team name!", Toast.LENGTH_SHORT).show();
+        }
+        else if(awayTeamName.isEmpty()){
+            Toast.makeText(this, "Entry away Team name!", Toast.LENGTH_SHORT).show();
+        }
+        else if(homeUriString==null){
+            Toast.makeText(this, "Attach Home Team logo!", Toast.LENGTH_SHORT).show();
+        }
+        else if(awayUriString==null){
+            Toast.makeText(this, "Attach Away Team logo!", Toast.LENGTH_SHORT).show();
+        }
+        else if(validate){
+            Toast.makeText(this, "Fill all Team name!", Toast.LENGTH_SHORT).show();
+        }
+        else{
             Intent i = new Intent(MainActivity.this, MatchActivity.class);
             i.putExtra("homeTeam", homeTeamName);
             i.putExtra("awayTeam", awayTeamName);
             i.putExtra("homeUri", homeUriString);
             i.putExtra("awayUri", awayUriString);
             startActivity(i);
-        }else {
-            Toast.makeText(this, "Masukkan Nama Tim!", Toast.LENGTH_SHORT).show();
         }
 
     }
